@@ -14,7 +14,7 @@ namespace CodeBase.Infrastructure
         {
             var curtain = Instantiate(_curtainPrefab);
             
-            var game = new Game(new SceneLoader(this, curtain), ServiceLocator.Container);
+            var game = new Game(new SceneLoader(this, curtain), ServiceLocator.Container,this);
             game.StateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);

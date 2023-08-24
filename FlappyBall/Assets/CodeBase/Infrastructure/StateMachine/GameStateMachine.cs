@@ -13,13 +13,13 @@ namespace CodeBase.Infrastructure.StateMachine
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _currentState;
 
-        public GameStateMachine(ISceneLoader sceneLoader, ServiceLocator serviceLocator)
+        public GameStateMachine(ISceneLoader sceneLoader, ServiceLocator serviceLocator, ICoroutineRunner coroutineRunner)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator, coroutineRunner),
                 [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, serviceLocator.Single<IGameFactory>()),
-                [typeof(GameLoopState)] = new GameLoopState(this),
+                [typeof(GameLoopState)] = new GameLoopState(this, serviceLocator.Single<IGameFactory>()),
             };
         }
 

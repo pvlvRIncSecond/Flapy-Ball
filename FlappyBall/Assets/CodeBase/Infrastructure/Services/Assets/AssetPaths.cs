@@ -3,5 +3,6 @@
     public class AssetPaths
     {
         public const string PlayerPrefabPath = "Player/Player";
+        public const string ObstaclesSpawner = "Obstacles/ObstacleSpawner";
     }
 }

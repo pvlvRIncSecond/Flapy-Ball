@@ -14,12 +14,14 @@ namespace CodeBase.Infrastructure.StateMachine.States
         private readonly GameStateMachine _gameStateMachine;
         private readonly ISceneLoader _sceneLoader;
         private readonly ServiceLocator _serviceLocator;
+        private readonly ICoroutineRunner _coroutineRunner;
 
-        public BootstrapState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, ServiceLocator serviceLocator)
+        public BootstrapState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, ServiceLocator serviceLocator, ICoroutineRunner coroutineRunner)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
             _serviceLocator = serviceLocator;
+            _coroutineRunner = coroutineRunner;
 
             RegisterServices();
         }
@@ -37,9 +39,10 @@ namespace CodeBase.Infrastructure.StateMachine.States
         private void RegisterServices()
         {
             _serviceLocator.RegisterSingle<IGameStateMachine>(_gameStateMachine);
+            _serviceLocator.RegisterSingle<ICoroutineRunner>(_coroutineRunner);
             _serviceLocator.RegisterSingle<IInputService>(new InputService());
             _serviceLocator.RegisterSingle<IAssetLoader>(new AssetLoader());
-            _serviceLocator.RegisterSingle<IGameFactory>(new GameFactory(_serviceLocator.Single<IAssetLoader>()));
+            _serviceLocator.RegisterSingle<IGameFactory>(new GameFactory(_serviceLocator.Single<IAssetLoader>(), _serviceLocator.Single<ICoroutineRunner>()));
         }
     }
 }
