@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ce07ebfe138d5d4d9eb708536e64bf1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerTrigger: {fileID: 5578960755739658570}
+  playerTrigger: {fileID: 5578960755739658570}
 --- !u!1 &3106851358651023470
 GameObject:
   m_ObjectHideFlags: 0
@@ -192,7 +192,7 @@ GameObject:
   - component: {fileID: 7810344707828874245}
   - component: {fileID: 4513698347479683569}
   - component: {fileID: 8287353574347497371}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Press_text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -328,7 +328,7 @@ GameObject:
   - component: {fileID: 9035475615557697265}
   - component: {fileID: 3207370758650246240}
   - component: {fileID: 8269050043643779883}
-  m_Layer: 5
+  m_Layer: 0
   m_Name: Press Space Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

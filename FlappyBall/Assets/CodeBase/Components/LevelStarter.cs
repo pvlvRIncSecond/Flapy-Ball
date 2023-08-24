@@ -5,31 +5,34 @@ using CodeBase.Infrastructure.StateMachine;
 using CodeBase.Infrastructure.StateMachine.States;
 using UnityEngine;
 
-public class LevelStarter : MonoBehaviour
+namespace CodeBase.Components
 {
+    public class LevelStarter : MonoBehaviour
+    {
 
-    [SerializeField] private PlayerMover _playerMover;
-    [SerializeField] private CircleTail _circleTail;
+        [SerializeField] private PlayerMover _playerMover;
+        [SerializeField] private CircleTail _circleTail;
     
-    private IGameStateMachine _gameStateMachine;
-    private IInputService _inputService;
+        private IGameStateMachine _gameStateMachine;
+        private IInputService _inputService;
 
-    private void Awake()
-    {
-        _inputService = ServiceLocator.Container.Single<IInputService>();
-        _gameStateMachine = ServiceLocator.Container.Single<IGameStateMachine>();
-    }
-
-    private void Update()
-    {
-        if (_inputService.MoveUp)
+        private void Awake()
         {
-            _gameStateMachine.Enter<GameLoopState>();
-            _playerMover.enabled = true;
-            _circleTail.enabled = true;
-            
-            Destroy(gameObject);
+            _inputService = ServiceLocator.Container.Single<IInputService>();
+            _gameStateMachine = ServiceLocator.Container.Single<IGameStateMachine>();
         }
+
+        private void Update()
+        {
+            if (_inputService.MoveUp)
+            {
+                _gameStateMachine.Enter<GameLoopState>();
+                _playerMover.enabled = true;
+                _circleTail.enabled = true;
+            
+                Destroy(gameObject);
+            }
         
+        }
     }
 }

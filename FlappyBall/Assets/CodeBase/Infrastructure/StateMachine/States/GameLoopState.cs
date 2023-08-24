@@ -18,7 +18,8 @@ namespace CodeBase.Infrastructure.StateMachine.States
         public void Enter()
         {
             GameObject spawnPoint = GameObject.FindWithTag(ObstaclesPoint);
-            _gameFactory.CreatingObstaclesSpawner(spawnPoint.transform.position);
+            _gameFactory.CreateObstaclesSpawner(spawnPoint.transform.position);
+            _gameFactory.CreatePointSpawner(spawnPoint.transform.position);
         }
 
         public void Exit()

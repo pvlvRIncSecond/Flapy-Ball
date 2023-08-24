@@ -6,6 +6,8 @@ TagManager:
   tags:
   - InitialPoint
   - ObstaclesPoint
+  - ScoreCatcher
+  - Score
   layers:
   - Default
   - TransparentFX
@@ -15,7 +17,7 @@ TagManager:
   - UI
   - Obstacle
   - Environment
-  - 
+  - Score
   - 
   - 
   - 
