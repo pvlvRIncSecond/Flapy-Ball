@@ -30,6 +30,7 @@ namespace CodeBase.Infrastructure.StateMachine.States
         private void OnLoad()
         {
             GameObject playerPoint = GameObject.FindWithTag(InitialPoint);
+            _gameFactory.CreateHud();
             _gameFactory.CreatePlayer(playerPoint.transform.position);
         }
     }

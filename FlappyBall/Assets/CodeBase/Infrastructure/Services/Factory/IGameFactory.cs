@@ -6,5 +6,6 @@ namespace CodeBase.Infrastructure.Services.Factory
     {
         GameObject CreatePlayer(Vector3 at);
         void CreatingObstaclesSpawner(Vector3 at);
+        ScoreCounter CreateHud();
     }
 }

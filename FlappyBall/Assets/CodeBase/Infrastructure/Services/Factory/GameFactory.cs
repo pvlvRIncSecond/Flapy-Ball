@@ -20,5 +20,7 @@ namespace CodeBase.Infrastructure.Services.Factory
         public void CreatingObstaclesSpawner(Vector3 at) => 
             _assetLoader.Instantiate(AssetPaths.ObstaclesSpawner, at);
 
+        public ScoreCounter CreateHud() => 
+            _assetLoader.Instantiate<ScoreCounter>(AssetPaths.Hud);
     }
 }
