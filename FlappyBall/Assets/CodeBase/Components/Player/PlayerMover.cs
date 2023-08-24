@@ -1,6 +1,5 @@
 using CodeBase.Infrastructure.Services.Input;
 using CodeBase.Infrastructure.Services.Locator;
-using CodeBase.Infrastructure.StateMachine;
 using UnityEngine;
 
 public class PlayerMover : MonoBehaviour
@@ -10,11 +9,14 @@ public class PlayerMover : MonoBehaviour
     
     private IInputService _inputService;
 
-    private void Awake()
-    {
+    private void Awake() => 
         _inputService = ServiceLocator.Container.Single<IInputService>();
-        ServiceLocator.Container.Single<IGameStateMachine>();
-    }
+
+    private void OnEnable() => 
+        _rigidbody.simulated = true;
+
+    private void OnDisable() => 
+        _rigidbody.simulated = false;
 
     private void Update()
     {

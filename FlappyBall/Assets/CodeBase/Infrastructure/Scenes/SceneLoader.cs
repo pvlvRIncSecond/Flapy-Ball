@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using CodeBase.Components;
-using CodeBase.Infrastructure.Services.Locator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
