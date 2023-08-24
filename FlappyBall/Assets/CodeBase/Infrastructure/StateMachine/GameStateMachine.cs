@@ -1,22 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
 using CodeBase.Infrastructure.Scenes;
+using CodeBase.Infrastructure.Services.Factory;
+using CodeBase.Infrastructure.Services.Locator;
 using CodeBase.Infrastructure.StateMachine.States;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure.StateMachine
 {
-    public class GameStateMachine
+    public class GameStateMachine : IGameStateMachine
     {
         private Dictionary<Type, IExitableState> _states;
         private IExitableState _currentState;
 
-        public GameStateMachine(ISceneLoader sceneLoader)
+        public GameStateMachine(ISceneLoader sceneLoader, ServiceLocator serviceLocator)
         {
             _states = new Dictionary<Type, IExitableState>()
             {
-                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader),
+                [typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, serviceLocator),
+                [typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, serviceLocator.Single<IGameFactory>()),
                 [typeof(GameLoopState)] = new GameLoopState(this),
             };
         }

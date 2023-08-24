@@ -1,4 +1,8 @@
 ﻿using CodeBase.Infrastructure.Scenes;
+using CodeBase.Infrastructure.Services.Assets;
+using CodeBase.Infrastructure.Services.Factory;
+using CodeBase.Infrastructure.Services.Input;
+using CodeBase.Infrastructure.Services.Locator;
 
 namespace CodeBase.Infrastructure.StateMachine.States
 {
@@ -9,11 +13,15 @@ namespace CodeBase.Infrastructure.StateMachine.States
 
         private readonly GameStateMachine _gameStateMachine;
         private readonly ISceneLoader _sceneLoader;
+        private readonly ServiceLocator _serviceLocator;
 
-        public BootstrapState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader)
+        public BootstrapState(GameStateMachine gameStateMachine, ISceneLoader sceneLoader, ServiceLocator serviceLocator)
         {
             _gameStateMachine = gameStateMachine;
             _sceneLoader = sceneLoader;
+            _serviceLocator = serviceLocator;
+
+            RegisterServices();
         }
 
         public void Enter() =>
@@ -24,6 +32,14 @@ namespace CodeBase.Infrastructure.StateMachine.States
 
         public void Exit()
         {
+        }
+
+        private void RegisterServices()
+        {
+            _serviceLocator.RegisterSingle<IGameStateMachine>(_gameStateMachine);
+            _serviceLocator.RegisterSingle<IInputService>(new InputService());
+            _serviceLocator.RegisterSingle<IAssetLoader>(new AssetLoader());
+            _serviceLocator.RegisterSingle<IGameFactory>(new GameFactory(_serviceLocator.Single<IAssetLoader>()));
         }
     }
 }

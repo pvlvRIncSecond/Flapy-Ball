@@ -1,4 +1,5 @@
 ﻿using CodeBase.Infrastructure.Scenes;
+using CodeBase.Infrastructure.Services.Locator;
 using CodeBase.Infrastructure.StateMachine;
 
 namespace CodeBase.Infrastructure
@@ -7,7 +8,7 @@ namespace CodeBase.Infrastructure
     {
         public GameStateMachine StateMachine;
 
-        public Game(ISceneLoader sceneLoader) => 
-            StateMachine = new GameStateMachine(sceneLoader);
+        public Game(ISceneLoader sceneLoader, ServiceLocator serviceLocator) => 
+            StateMachine = new GameStateMachine(sceneLoader, serviceLocator);
     }
 }

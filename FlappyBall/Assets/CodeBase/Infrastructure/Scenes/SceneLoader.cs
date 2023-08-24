@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using CodeBase.Components;
+using CodeBase.Infrastructure.Services.Locator;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,7 +12,7 @@ namespace CodeBase.Infrastructure.Scenes
         private readonly ICoroutineRunner _coroutineRunner;
         private readonly Curtain _curtain;
 
-        public SceneLoader(ICoroutineRunner coroutineRunner,Curtain curtain)
+        public SceneLoader(ICoroutineRunner coroutineRunner, Curtain curtain)
         {
             _coroutineRunner = coroutineRunner;
             _curtain = curtain;

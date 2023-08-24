@@ -1,5 +1,6 @@
 using CodeBase.Components;
 using CodeBase.Infrastructure.Scenes;
+using CodeBase.Infrastructure.Services.Locator;
 using CodeBase.Infrastructure.StateMachine.States;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace CodeBase.Infrastructure
         {
             var curtain = Instantiate(_curtainPrefab);
             
-            var game = new Game(new SceneLoader(this, curtain));
+            var game = new Game(new SceneLoader(this, curtain), ServiceLocator.Container);
             game.StateMachine.Enter<BootstrapState>();
             
             DontDestroyOnLoad(this);
