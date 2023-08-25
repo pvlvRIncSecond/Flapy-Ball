@@ -20,10 +20,10 @@ namespace CodeBase.Components.Player
         private void OnDisable() => 
             _rigidbody.simulated = false;
 
-        private void Update()
+        private void FixedUpdate()
         {
             if (_inputService.MoveUp)
-                _rigidbody.AddForce(Vector2.up * _forceMultiplier);
+                _rigidbody.velocity += (Vector2.up * _forceMultiplier);
 
             _rigidbody.velocity = new Vector2(0, _rigidbody.velocity.y);
 

@@ -165,8 +165,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91716e7a3f6b51f418c68629882e6873, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 6
+  _destroyTime: 10
+  _speed: 5.5
   _pointTrigger: {fileID: 9070409002687929898}
+  _rigidbody: {fileID: 1059111682406279479}
 --- !u!1 &1059111682612349133
 GameObject:
   m_ObjectHideFlags: 0

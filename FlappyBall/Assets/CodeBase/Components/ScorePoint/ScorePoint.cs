@@ -9,6 +9,7 @@ namespace CodeBase.Components.ScorePoint
         [SerializeField] private float _destroyTime = 10f;
         [SerializeField] private float _speed = 6f;
         [SerializeField] private PointTrigger _pointTrigger;
+        [SerializeField] private Rigidbody2D _rigidbody;
         private ScoreCounter _scoreCounter;
 
         private void Start() => 
@@ -20,8 +21,11 @@ namespace CodeBase.Components.ScorePoint
         private void OnDisable() => 
             _pointTrigger.OnCollide -= AddScore;
 
-        private void Update() => 
-            transform.position -= Vector3.right * _speed * Time.deltaTime;
+        private void Update()
+        {
+            _rigidbody.velocity = Vector2.left * _speed + Vector2.up * _rigidbody.velocity.y;
+        }
+
 
         public void Construct(ScoreCounter scoreCounter) => 
             _scoreCounter = scoreCounter;
