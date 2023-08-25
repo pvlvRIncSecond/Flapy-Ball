@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +10,7 @@ namespace CodeBase.Components.Obstacle
         [SerializeField] private float _speed = 4f; 
         [SerializeField] private float _rotationSpeed = 3f; 
         [SerializeField] private float _amplitude = 1f;
+        [SerializeField] private float _destroyTime = 10f;
 
         private int _direction;
         private float _randomRotationRange;
@@ -16,6 +19,15 @@ namespace CodeBase.Components.Obstacle
         {
             _direction = Random.value > .5f ? 1 : -1;
             _randomRotationRange = Random.value * _direction;
+        }
+
+        private void Start() => 
+            StartCoroutine(DestroyObstacle());
+
+        private IEnumerator DestroyObstacle()
+        {
+            yield return new WaitForSeconds(_destroyTime);
+            Destroy(gameObject);
         }
 
         private void Update()
